@@ -1,0 +1,31 @@
+<idea-plugin>
+    <id>com.felhr.airadb.air-adb</id>
+    <name>Air-Adb</name>
+    <vendor email="felhr85@gmail.com" url="https://felhr85.net/">felhr85</vendor>
+
+    <description>Air-Adb allows you to debug your Android apps via Wifi.</description>
+
+    <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
+         on how to target different products -->
+    <!-- uncomment to enable plugin in all products
+    <depends>com.intellij.modules.lang</depends>
+    -->
+
+    <extensions defaultExtensionNs="com.intellij">
+        <!-- Add your extensions here -->
+    </extensions>
+
+    <actions>
+        <!-- Add your actions here -->
+        <group id="com.felhr.airadb.TopMenu"
+               text="Debug over Wifi"
+               description="Adb over wifi">
+            <add-to-group group-id="MainMenu" anchor="last"/>
+            <action id="AdbOverWifi"
+                    class="AdbOverWifi"
+                    text="Enable Adb over wifi"
+                    description="MyAction"/>
+
+        </group>
+    </actions>
+</idea-plugin>
