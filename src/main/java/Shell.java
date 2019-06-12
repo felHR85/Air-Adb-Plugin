@@ -21,7 +21,12 @@ class Shell extends Thread {
             if(!isWindows()) {
                 exitValue = unixExec(path);
             }else {
-                //TODO: Windows
+                exitValue = windowsExec(path);
+
+                if (exitValue != 0) {
+                    //TODO: Do you have WSL installed?
+                    //TODO: Reboot
+                }
             }
 
             iShell.onScriptEnd(exitValue, lastLine);
@@ -33,6 +38,27 @@ class Shell extends Thread {
 
     private int unixExec(String path) throws IOException, InterruptedException {
         ProcessBuilder processBuilder = new ProcessBuilder(path);
+        //Sets the source and destination for subprocess standard I/O to be the same as those of the current Java process.
+        //processBuilder.inheritIO();
+        Process process = processBuilder.start();
+
+        BufferedReader in = new BufferedReader(new InputStreamReader(process.getInputStream()));
+        while ((line = in.readLine()) != null) {
+            lastLine = line;
+        }
+
+        int exitValue = process.waitFor();
+        if (exitValue != 0) {
+            // check for errors
+            new BufferedInputStream(process.getErrorStream());
+            throw new RuntimeException("execution of script failed!");
+        }
+
+        return exitValue;
+    }
+
+    private int windowsExec(String path) throws IOException, InterruptedException{
+        ProcessBuilder processBuilder = new ProcessBuilder("bash.exe", path);
         //Sets the source and destination for subprocess standard I/O to be the same as those of the current Java process.
         //processBuilder.inheritIO();
         Process process = processBuilder.start();
