@@ -6,6 +6,7 @@ import java.nio.file.Paths;
 public class ScriptHandler {
 
     private final static String AIR_ADB_PATH = ".air-adb";
+    private final static String SCRIPT_VERSION = "# Version: 1";
 
     public static boolean writeScriptToHome(String content) {
         try {
@@ -18,6 +19,8 @@ public class ScriptHandler {
             if(folderExists) {
                 if(!fileExists) {
                     Files.write(Paths.get(adbAirFolder.getPath() + "/" + "air-adb.sh"), content.getBytes());
+                }else if(needUpdated()) {
+                    Files.write(Paths.get(adbAirFolder.getPath() + "/" + "air-adb.sh"), content.getBytes());
                 }
             }else{
                 if(adbAirFolder.mkdir()) {
@@ -27,11 +30,7 @@ public class ScriptHandler {
                 }
             }
 
-            if (setScriptToExecutable()) {
-                return true;
-            }else {
-                return false;
-            }
+            return setScriptToExecutable();
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -48,7 +47,13 @@ public class ScriptHandler {
     }
 
     private static boolean needUpdated() {
-        //TODO: Check version of Script
+        try {
+            File adbAirFolder = new File(getHomeDir() + "/" + AIR_ADB_PATH);
+            return ! Files.readAllLines(Paths.get(adbAirFolder.getPath() + "/" + "air-adb.sh"))
+                    .contains(SCRIPT_VERSION);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         return false;
     }
 

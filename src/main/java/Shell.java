@@ -19,7 +19,7 @@ class Shell extends Thread {
     @Override
     public void run() {
         try {
-            int exitValue = 1;
+            int exitValue;
             if(!isWindows()) {
                 exitValue = unixExec(path);
             }else {
