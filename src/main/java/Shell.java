@@ -5,6 +5,8 @@ import java.io.InputStreamReader;
 
 class Shell extends Thread {
 
+    private static final String WSL_ERROR = "Something wen wrong. Are you sure Do you have WSL (Windows Subsystem for Linux) installed?";
+
     private String path;
     private String line, lastLine;
     private IShell iShell;
@@ -21,11 +23,18 @@ class Shell extends Thread {
             if(!isWindows()) {
                 exitValue = unixExec(path);
             }else {
-                exitValue = windowsExec(path);
+                String wslPath = wslPathConverter(path);
+
+                if(wslPath.equals(WSL_ERROR)) {
+                    iShell.onScriptEnd(1, WSL_ERROR);
+                    return;
+                }
+
+                exitValue = windowsExec(wslPath);
 
                 if (exitValue != 0) {
-                    //TODO: Do you have WSL installed?
-                    //TODO: Reboot
+                    iShell.onScriptEnd(exitValue, WSL_ERROR);
+                    return;
                 }
             }
 
@@ -76,6 +85,26 @@ class Shell extends Thread {
         }
 
         return exitValue;
+    }
+
+    private String wslPathConverter(String path) throws IOException, InterruptedException{
+        ProcessBuilder processBuilder = new ProcessBuilder("wslpath -a", path);
+        //Sets the source and destination for subprocess standard I/O to be the same as those of the current Java process.
+        //processBuilder.inheritIO();
+        Process process = processBuilder.start();
+
+        BufferedReader in = new BufferedReader(new InputStreamReader(process.getInputStream()));
+        while ((line = in.readLine()) != null) {
+            lastLine = line;
+        }
+
+        int exitValue = process.waitFor();
+        if (exitValue != 0) {
+            // check for errors
+           return WSL_ERROR;
+        }
+
+        return lastLine;
     }
 
 

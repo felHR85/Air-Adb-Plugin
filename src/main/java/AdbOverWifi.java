@@ -45,13 +45,8 @@ public class AdbOverWifi extends AnAction implements Shell.IShell {
     @Override
     public void onScriptEnd(int exitValue, String line) {
         presentation.setEnabled(true);
-        if(exitValue == 0) {
-            notification.expire();
-            createNotification(line);
-        }else{
-            notification.expire();
-            createNotification(line);
-        }
+        notification.expire();
+        createNotification(line);
     }
 
     @Override
