@@ -20,9 +20,10 @@
         <group id="com.felhr.airadb.TopMenu"
                text="Debug over Wifi"
                description="Adb over wifi">
-            <add-to-group group-id="MainMenu" anchor="last"/>
+            <add-to-group group-id="ToolsMenu" anchor="last"/>
             <action id="AdbOverWifi"
                     class="AdbOverWifi"
+                    icon="/icons/air_adb_icon.svg"
                     text="Enable Adb over wifi"
                     description="MyAction"/>
 

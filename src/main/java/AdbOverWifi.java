@@ -51,6 +51,7 @@ public class AdbOverWifi extends AnAction implements Shell.IShell {
 
     @Override
     public void onScriptException() {
+        presentation.setEnabled(true);
         notification.expire();
         createNotification("Air-Adb: Something went wrong");
     }
