@@ -1,3 +1,5 @@
+package adbair;
+
 import com.intellij.notification.Notification;
 import com.intellij.notification.NotificationDisplayType;
 import com.intellij.notification.NotificationGroup;
@@ -50,10 +52,11 @@ public class AdbOverWifi extends AnAction implements Shell.IShell {
     }
 
     @Override
-    public void onScriptException() {
+    public void onScriptException(String message) {
         presentation.setEnabled(true);
         notification.expire();
-        createNotification("Air-Adb: Something went wrong");
+        createNotification("Air-Adb: Something went wrong ("
+            + message + ")");
     }
 
     private String getScriptContent() {

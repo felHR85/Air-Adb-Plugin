@@ -1,4 +1,5 @@
-import java.io.BufferedInputStream;
+package adbair;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -41,7 +42,7 @@ class Shell extends Thread {
             iShell.onScriptEnd(exitValue, lastLine);
         } catch (Exception e) {
             e.printStackTrace();
-            iShell.onScriptException();
+            iShell.onScriptException(e.getMessage());
         }
     }
 
@@ -58,9 +59,8 @@ class Shell extends Thread {
 
         int exitValue = process.waitFor();
         if (exitValue != 0) {
-            // check for errors
-            new BufferedInputStream(process.getErrorStream());
-            throw new RuntimeException("execution of script failed!");
+            throw new RuntimeException("execution of script failed : "
+                    + lastLine);
         }
 
         return exitValue;
@@ -79,9 +79,8 @@ class Shell extends Thread {
 
         int exitValue = process.waitFor();
         if (exitValue != 0) {
-            // check for errors
-            new BufferedInputStream(process.getErrorStream());
-            throw new RuntimeException("execution of script failed!");
+            throw new RuntimeException("execution of script failed : "
+                + lastLine);
         }
 
         return exitValue;
@@ -114,6 +113,6 @@ class Shell extends Thread {
 
     interface IShell {
         void onScriptEnd(int exitValue, String line);
-        void onScriptException();
+        void onScriptException(String message);
     }
 }
