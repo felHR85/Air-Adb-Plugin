@@ -50,7 +50,13 @@ function getIP3() {
 }
 
 # Get adb from path or directly from default Android SDK installations
-ADB_PATH=$(which adb)
+OS_SYSTEM=$(uname -s)
+if [[ $OS_SYSTEM == Darwin ]]; then
+    ADB_PATH=$(getAdbPath)
+else
+    ADB_PATH=$(which adb)
+fi
+
 
 if [[ -x $ADB_PATH ]]; then
     ADB=$ADB_PATH

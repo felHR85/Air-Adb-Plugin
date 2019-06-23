@@ -22,7 +22,7 @@
                description="Adb over wifi">
             <add-to-group group-id="ToolsMenu" anchor="last"/>
             <action id="AdbOverWifi"
-                    class="AdbOverWifi"
+                    class="adbair.AdbOverWifi"
                     icon="/icons/air_adb_icon.svg"
                     text="Enable Adb over wifi"
                     description="MyAction"/>
