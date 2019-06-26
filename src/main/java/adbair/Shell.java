@@ -88,6 +88,7 @@ class Shell extends Thread {
 
     private String wslPathConverter(String path) throws IOException, InterruptedException{
 
+        // Tested on cmd: bash.exe -c "wslpath -a C:\\\\Users\\\\felhr\\\\.air-adb\\\\air-adb.sh"
         String command = "bash.exe -c \"wslpath -a " + path + "\"";
 
         ProcessBuilder processBuilder = new ProcessBuilder(command);
