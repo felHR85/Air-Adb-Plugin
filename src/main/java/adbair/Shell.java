@@ -87,7 +87,10 @@ class Shell extends Thread {
     }
 
     private String wslPathConverter(String path) throws IOException, InterruptedException{
-        ProcessBuilder processBuilder = new ProcessBuilder("wslpath -a", path);
+
+        String command = "bash.exe -c \"wslpath -a " + path + "\"";
+
+        ProcessBuilder processBuilder = new ProcessBuilder(command);
         //Sets the source and destination for subprocess standard I/O to be the same as those of the current Java process.
         //processBuilder.inheritIO();
         Process process = processBuilder.start();
