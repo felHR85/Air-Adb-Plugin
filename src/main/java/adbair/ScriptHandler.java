@@ -46,7 +46,7 @@ public class ScriptHandler {
             return getHomeDir() + "/" + AIR_ADB_PATH + "/" + "air-adb.sh";
         }else{
             String winPath = getHomeDir() + "\\" + AIR_ADB_PATH + "\\" + "air-adb.sh";
-            winPath = winPath.replace("\\", "\\\\\\\\");
+            winPath = winPath.replace("\\", "/");
             return winPath;
         }
 

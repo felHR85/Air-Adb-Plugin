@@ -88,10 +88,9 @@ class Shell extends Thread {
 
     private String wslPathConverter(String path) throws IOException, InterruptedException{
 
-        // Tested on cmd: bash.exe -c "wslpath -a C:\\\\Users\\\\felhr\\\\.air-adb\\\\air-adb.sh"
-        String command = "bash.exe -c \"wslpath -a " + path + "\"";
+        String command = "\"wslpath -a " + path + "\"";
 
-        ProcessBuilder processBuilder = new ProcessBuilder(command);
+        ProcessBuilder processBuilder = new ProcessBuilder("bash.exe", "-c", command);
         //Sets the source and destination for subprocess standard I/O to be the same as those of the current Java process.
         //processBuilder.inheritIO();
         Process process = processBuilder.start();
@@ -112,7 +111,7 @@ class Shell extends Thread {
 
 
     private boolean isWindows() {
-        return System.getProperty("os.name").contains("win");
+        return System.getProperty("os.name").toLowerCase().contains("win");
     }
 
     interface IShell {
