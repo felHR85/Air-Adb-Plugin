@@ -8,9 +8,9 @@ Requirements
  
 Usage
 --------------------------------------
-Tools -> Enable Adb over wifi
-![](screenshots/air-adb1.png)
-Unplug your device and start debugging
+Tools -> Enable Adb over wifi\
+![](screenshots/air-adb1.png)\
+Unplug your device and start debugging\
 ![](screenshots/air-adb2.png)
 
 
