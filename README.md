@@ -1,5 +1,5 @@
 <p align="center">
-  <img width="240" height="240" src="icon/pluginIcon.svg">
+  <img width="240" height="240" src="icons/pluginIcon.svg">
 </p>
 
 <center>Air-Adb: A plugin for debugging Android Apps via Wifi</center>
