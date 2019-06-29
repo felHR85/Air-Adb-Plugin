@@ -1,4 +1,4 @@
-![](src/main/resources/icons/air_adb_icon.svg) Air-Adb: A plugin for debugging Android Apps via Wifi
+![](icon/pluginIcon.svg) Air-Adb: A plugin for debugging Android Apps via Wifi
 =========
 
 Requirements
