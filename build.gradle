@@ -22,9 +22,7 @@ intellij {
     alternativeIdePath '/Applications/Android Studio.app'
 }
 patchPluginXml {
-    changeNotes """
-      Add change notes here.<br>
-      <em>most HTML tags may be used</em>"""
+    changeNotes """ First version of Air-Adb"""
     sinceBuild '145.0'
     untilBuild '191.*'
 }
