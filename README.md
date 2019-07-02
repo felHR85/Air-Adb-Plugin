@@ -10,13 +10,16 @@ Requirements
  - Linux, OS X, Windows 10 ([WSL is needed](https://docs.microsoft.com/en-us/windows/wsl/install-win10))
  - Android Studio or IntelliJ 
  
+Installation
+--------------------------------------
+[Install Air-Adb plugin from Jetbrains repository](https://plugins.jetbrains.com/plugin/12651-air-adb)
+
 Usage
 --------------------------------------
 Tools -> Enable Adb over wifi\
 ![](screenshots/air-adb1.png)\
 Unplug your device and start debugging\
 ![](screenshots/air-adb2.png)
-
 
 License
 --------------------------------------
