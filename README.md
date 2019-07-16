@@ -21,6 +21,18 @@ Tools -> Enable Adb over wifi\
 Unplug your device and start debugging\
 ![](screenshots/air-adb2.png)
 
+Change adb path
+--------------------------------------
+if your Adb is not installed in the default folder you need to change the bash script that Air-Adb installs.
+```shell
+#For OSX use this one-liner changing my_path with your current path
+MY_PATH="my_path" && ex -sc "6d|x" ~/.air-adb/air-adb.sh && ex -sc "6i|OSX_ADB_DEFAULT_PATH=$MY_PATH" -cx ~/.air-adb/air-adb.sh
+
+#For Linux use this one-liner changing my_path with your current path
+MY_PATH="my_path" && ex -sc "7d|x" ~/.air-adb/air-adb.sh && ex -sc "7i|LINUX_ADB_DEFAULT_PATH=$MY_PATH" -cx ~/.air-adb/air-adb.sh
+
+```
+
 License
 --------------------------------------
 MIT License
