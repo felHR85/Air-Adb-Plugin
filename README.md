@@ -31,8 +31,8 @@ MY_PATH="my_path" && ex -sc "6d|x" ~/.air-adb/air-adb.sh && ex -sc "6i|OSX_ADB_D
 #For Linux use this one-liner changing my_path with your current path
 MY_PATH="my_path" && ex -sc "7d|x" ~/.air-adb/air-adb.sh && ex -sc "7i|LINUX_ADB_DEFAULT_PATH=$MY_PATH" -cx ~/.air-adb/air-adb.sh
 
-#For Windows (WSL) use this one-liner changing my_path with your current path
-MY_PATH="my_path" && ex -sc "26d|x" ~/.air-adb/air-adb.sh && ex -sc "26i|echo $MY_PATH" -cx ~/.air-adb/air-adb.sh
+#For Windows (WSL) use win_setup.sh located in the scripts folder
+./win_setup.sh "adb_path"
 ```
 
 License
