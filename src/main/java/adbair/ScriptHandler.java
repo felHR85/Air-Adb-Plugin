@@ -8,7 +8,7 @@ import java.nio.file.Paths;
 public class ScriptHandler {
 
     private final static String AIR_ADB_PATH = ".air-adb";
-    private final static String SCRIPT_VERSION = "# Version: 1";
+    private final static String SCRIPT_VERSION = "# Version: 2";
 
     public static boolean writeScriptToHome(String content) {
         try {
